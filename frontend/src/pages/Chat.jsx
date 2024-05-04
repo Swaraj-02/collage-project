@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import AppLayout from "../components/layout/AppLayout";
 import { IconButton, Skeleton, Stack } from "@mui/material";
-import { grayColor, orange } from "../constants/color";
+import { bgChatGradient, darkGreen, bgImage } from "../constants/color";
 import {
   AttachFile as AttachFileIcon,
   Send as SendIcon,
@@ -182,11 +182,13 @@ const Chat = ({ chatId, user }) => {
         boxSizing={"border-box"}
         padding={"1rem"}
         spacing={"1rem"}
-        bgcolor={grayColor}
+        // bgcolor={grayColor}
         height={"90%"}
         sx={{
           overflowX: "hidden",
           overflowY: "auto",
+          background: bgImage,
+          backgroundSize: "cover",
         }}
       >
         {allMessages.map((i) => (
@@ -216,6 +218,7 @@ const Chat = ({ chatId, user }) => {
               position: "absolute",
               left: "1.5rem",
               rotate: "30deg",
+              color: darkGreen,
             }}
             onClick={handleFileOpen}
           >
@@ -232,16 +235,18 @@ const Chat = ({ chatId, user }) => {
             type="submit"
             sx={{
               rotate: "-30deg",
-              bgcolor: orange,
+              bgcolor: darkGreen,
               color: "white",
-              marginLeft: "1rem",
+              marginLeft: ".8rem",
               padding: "0.5rem",
               "&:hover": {
                 bgcolor: "error.dark",
               },
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            <SendIcon />
+            <SendIcon style={{ fontSize: "1.8rem" }} />
           </IconButton>
         </Stack>
       </form>

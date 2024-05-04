@@ -8,6 +8,7 @@ const initialState = {
   isSearch: false,
   isFileMenu: false,
   isDeleteMenu: false,
+  isOpenModal: false,
   uploadingLoader: false,
   selectedDeleteChat: {
     chatId: "",
@@ -46,6 +47,9 @@ const miscSlice = createSlice({
     setSelectedDeleteChat: (state, action) => {
       state.selectedDeleteChat = action.payload;
     },
+    setOpenModal: (state, action) => {
+      state.openModal = action.payload;
+    },
   },
 });
 
@@ -60,4 +64,5 @@ export const {
   setIsDeleteMenu,
   setUploadingLoader,
   setSelectedDeleteChat,
+  setOpenModal,
 } = miscSlice.actions;

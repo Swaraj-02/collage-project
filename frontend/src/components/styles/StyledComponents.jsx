@@ -25,11 +25,14 @@ const Link = styled(LinkComponent)`
 
 const InputBox = styled("input")`
   width: 100%;
-  height: 100%;
+  height: 50px;
   border: none;
   outline: none;
   padding: 0 3rem;
   border-radius: 1.5rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
   background-color: ${grayColor};
 `;
 

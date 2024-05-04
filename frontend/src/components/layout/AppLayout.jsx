@@ -1,3 +1,4 @@
+import "./appLayout.css";
 import { Drawer, Grid, Skeleton } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +27,11 @@ import Title from "../shared/Title";
 import ChatList from "../specific/ChatList";
 import Profile from "../specific/Profile";
 import Header from "./Header";
+import {
+  bgChatGradient,
+  bgImage,
+  bgLoginGradient,
+} from "../../constants/color";
 
 const AppLayout = () => (WrappedComponent) => {
   return (props) => {
@@ -104,7 +110,7 @@ const AppLayout = () => (WrappedComponent) => {
         ) : (
           <Drawer open={isMobile} onClose={handleMobileClose}>
             <ChatList
-              w="70vw"
+              w="60vw"
               chats={data?.chats}
               chatId={chatId}
               handleDeleteChat={handleDeleteChat}
@@ -114,7 +120,7 @@ const AppLayout = () => (WrappedComponent) => {
           </Drawer>
         )}
 
-        <Grid container height={"calc(100vh - 4rem)"}>
+        {/* <Grid container height={"calc(100vh - 8rem)"}>
           <Grid
             item
             sm={4}
@@ -123,7 +129,9 @@ const AppLayout = () => (WrappedComponent) => {
               display: { xs: "none", sm: "block" },
             }}
             height={"100%"}
-          >
+          > */}
+        <div className="app-layout">
+          <div className="chat-layout">
             {isLoading ? (
               <Skeleton />
             ) : (
@@ -135,12 +143,24 @@ const AppLayout = () => (WrappedComponent) => {
                 onlineUsers={onlineUsers}
               />
             )}
-          </Grid>
-          <Grid item xs={12} sm={8} md={5} lg={6} height={"100%"}>
+          </div>
+          {/* </Grid> */}
+          {/* <Grid
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            lg={9} //lg={6}
+            height={"100%"}
+            sx={{ background: bgImage, backgroundSize: "cover" }}
+          > */}
+          <div className="wrapper-layout">
             <WrappedComponent {...props} chatId={chatId} user={user} />
-          </Grid>
+          </div>
+        </div>
+        {/* </Grid> */}
 
-          <Grid
+        {/* <Grid
             item
             md={4}
             lg={3}
@@ -148,12 +168,16 @@ const AppLayout = () => (WrappedComponent) => {
             sx={{
               display: { xs: "none", md: "block" },
               padding: "2rem",
-              bgcolor: "rgba(0,0,0,0.85)",
+              // bgcolor: "rgba(0,0,0,0.85)",
+              background: bgLoginGradient,
             }}
           >
             <Profile user={user} />
-          </Grid>
-        </Grid>
+          </Grid> */}
+        {/* </Grid> */}
+        <footer className="footer" style={{ textAlign: "center" }}>
+          <p>Developed & Designed By USBM Students &copy; 2k24</p>
+        </footer>
       </>
     );
   };

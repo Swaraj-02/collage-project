@@ -1,61 +1,92 @@
 import { Avatar, Stack, Typography } from "@mui/material";
 import {
-  Face as FaceIcon,
+  // Face as FaceIcon,
   AlternateEmail as UserNameIcon,
   CalendarMonth as CalendarIcon,
 } from "@mui/icons-material";
+import RecyclingIcon from "@mui/icons-material/Recycling";
+import PersonIcon from "@mui/icons-material/Person";
 import moment from "moment";
 import { transformImage } from "../../lib/features";
 
 const Profile = ({ user }) => {
   return (
-    <Stack spacing={"2rem"} direction={"column"} alignItems={"center"}>
-      <Avatar
-        src={transformImage(user?.avatar?.url)}
-        sx={{
-          width: 150,
-          height: 150,
-          objectFit: "contain",
-          marginBottom: "1rem",
-          border: "5px solid white",
-        }}
-      />
-
-      <ProfileCard text={user?.bio} heading={"Bio"} />
-
-      <ProfileCard
-        heading={"Username"}
-        text={user?.username}
-        Icon={<UserNameIcon />}
-      />
-
-      <ProfileCard heading={"Name"} text={user?.name} Icon={<FaceIcon />} />
-      <ProfileCard
-        heading={"Joined"}
-        text={moment(user?.createdAt).fromNow()}
-        Icon={<CalendarIcon />}
-      />
-    </Stack>
+    <>
+      {" "}
+      <Stack
+        direction={"column"}
+        alignItems={"center"}
+        style={{ backgroundColor: "#fff", width: "30%" }}
+      >
+        <Avatar
+          src={transformImage(user?.avatar?.url)}
+          sx={{
+            width: 50,
+            height: 50,
+            objectFit: "contain",
+            marginBottom: "1rem",
+            border: "2px solid #551ABB",
+          }}
+        />
+      </Stack>
+      <Stack direction={"column"} spacing={"1.5rem"}>
+        {" "}
+        {/*   add to stack*/}
+        <hr
+          style={{
+            height: "3px",
+            width: "100%",
+            background: "#551ABB",
+            border: "none",
+          }}
+        />
+        <ProfileCard
+          heading={"Username"}
+          text={user?.username}
+          Icon={<UserNameIcon />}
+        />
+        <ProfileCard
+          text={`${user?.bio}`}
+          heading={"Bio"}
+          Icon={<RecyclingIcon />}
+        />
+        <ProfileCard heading={"Name"} text={user?.name} Icon={<PersonIcon />} />
+        <ProfileCard
+          heading={"Joined"}
+          text={moment(user?.createdAt).fromNow()}
+          Icon={<CalendarIcon />}
+        />
+      </Stack>
+    </>
   );
 };
 
 const ProfileCard = ({ text, Icon, heading }) => (
-  <Stack
-    direction={"row"}
-    alignItems={"center"}
-    spacing={"1rem"}
-    color={"white"}
-    textAlign={"center"}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "4rem",
+      // justifyContent: "space-between",
+    }}
   >
-    {Icon && Icon}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
 
-    <Stack>
-      <Typography variant="body1">{text}</Typography>
-      <Typography color={"gray"} variant="caption">
-        {heading}
-      </Typography>
-    </Stack>
-  </Stack>
+        // justifyContent: "center" ,
+      }}
+    >
+      {Icon && <span style={{ marginRight: "0.5rem" }}>{Icon}</span>}
+      <span>{heading}</span>
+    </div>
+
+    {/* Content (icon and text) on the right */}
+    <div>
+      <span style={{ fontSize: "1.2rem", color: "purple" }}>{text}</span>
+    </div>
+  </div>
 );
 
 export default Profile;

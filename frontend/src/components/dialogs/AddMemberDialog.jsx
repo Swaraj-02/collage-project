@@ -6,8 +6,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { sampleUsers } from "../../constants/sampleData";
+import { useState } from "react";
+// import { sampleUsers } from "../../constants/sampleData";
 import UserItem from "../shared/UserItem";
 import {
   useAddGroupMembersMutation,
